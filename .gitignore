@@ -1,3 +1,4 @@
 /data/dataset.xlsx
 /cache/sentence_embeddings.npy
 /src/__pycache__
+*.csv
