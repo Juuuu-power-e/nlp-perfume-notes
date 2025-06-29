@@ -19,13 +19,13 @@ if __name__ == "__main__":
         embedding_path=embedding_path
     )
 
-    # 예측 수행
-    results_df = loocv_cluster_predict(df, sentence_embeddings, Y, all_notes, ks=[1, 2, 3])
+    # ✅ ks 리스트에 5를 추가하여 실험
+    results_df = loocv_cluster_predict(df, sentence_embeddings, Y, all_notes, ks=[1, 2, 3, 5])
 
     # 결과 저장
     os.makedirs(os.path.dirname(results_path), exist_ok=True)
     results_df.to_csv(results_path, index=False)
 
     # 결과 출력
-    print("📊 평균 성능 (label_ranking_average_precision):")
-    print(results_df.groupby("k")["label_ranking_average_precision"].mean())
+    print("📊 평균 성능 요약 (k=1,2,3,5)")
+    print(results_df.groupby("k")[["label_ranking_average_precision", "hit_at_k", "mrr"]].mean())
