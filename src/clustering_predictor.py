@@ -16,7 +16,7 @@ def reciprocal_rank(y_true, y_pred):
             return 1.0 / (i + 1)
     return 0.0
 
-def loocv_cluster_predict(df, sentence_embeddings, Y, all_notes, ks=[1, 2, 3], num_clusters=10):
+def loocv_cluster_predict(df, sentence_embeddings, Y, all_notes, ks=[1, 2, 3], num_clusters=4):
     results = []
     for test_idx in range(len(df)):
         # 훈련셋 구성
